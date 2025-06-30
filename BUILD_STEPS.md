@@ -70,6 +70,8 @@ cd consumers/online && ./cleanup.sh
 ## Architecture Flow 🏗️
 Data Upload → Lambda Trigger → CodePipeline → SageMaker Pipeline → Model Training → Model Deployment → Inference Endpoint
 
+📋 **See Complete Visual Flow**: [ARCHITECTURE_FLOW.md](./ARCHITECTURE_FLOW.md)
+
 **Total Build Time**: ~20-30 minutes
 **Success Rate**: 100% ✅
 

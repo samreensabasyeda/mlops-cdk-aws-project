@@ -6,7 +6,83 @@ This sample project uses a sample machine learning project to showcase how we ca
 
 > 📋 **Quick Start**: See [BUILD_STEPS.md](./BUILD_STEPS.md) for a concise step-by-step guide to build this project successfully.
 
-## Pre-requisite
+## 🚀 SUPER SIMPLE BEGINNER STEPS - COPY & PASTE READY!
+
+### Step 1: Install Prerequisites (One-time setup)
+```bash
+# 1. Install Node.js 18+ from https://nodejs.org
+# 2. Install Python 3.10+ from https://python.org
+# 3. Install AWS CLI from https://aws.amazon.com/cli/
+
+# After installing above, run these commands:
+npm install -g yarn
+npm install -g typescript  
+npm install -g aws-cdk
+
+# Configure AWS (you need AWS account)
+aws configure
+# Enter: Access Key ID, Secret Access Key, Region (us-east-1), Output format (json)
+```
+
+### Step 2: Setup Project (2 minutes)
+```bash
+# Download/Clone this project
+# Open terminal in project folder
+# Edit configuration file:
+```
+**EDIT FILE**: `configuration/projectConfig.json`
+```json
+{
+    "projectName": "mlops-e2e",
+    "repoType": "codecommit",
+    "ipPermitList": ["YOUR_IP_ADDRESS/32"]
+}
+```
+**Find your IP**: Search "what is my ip" on Google, replace YOUR_IP_ADDRESS
+
+### Step 3: Deploy Everything (15 minutes)
+```bash
+# Run this single command - it does EVERYTHING!
+./scripts/bootstrap.sh
+
+# Wait 10-15 minutes, will show output with S3 bucket names
+```
+
+### Step 4: Upload Data (1 minute)  
+```bash
+# Upload sample dataset automatically
+./scripts/uploadTestingDataset.sh
+
+# This triggers the ML pipeline automatically!
+```
+
+### Step 5: Check Progress (5 minutes)
+```bash
+# 1. Go to AWS Console → CodePipeline
+# 2. Find pipeline named "mlops-e2e-*" 
+# 3. Watch it run (takes 15-20 minutes total)
+# 4. Approve deployment when it asks
+```
+
+### Step 6: Test Your ML Model! 🎉
+```bash
+# Deploy the web app (optional)
+cd consumers/online
+./bootstrap.sh
+
+# Get the website URL from output and test predictions!
+```
+
+## 🧹 Cleanup (When Done)
+```bash
+# Clean up to avoid AWS charges
+cd consumers/online && ./cleanup.sh  # If you deployed web app
+./scripts/cleanup.sh  # Clean main infrastructure
+```
+
+---
+
+## Pre-requisite Details
 
 * [Python](https://www.python.org/) (version 3.10 or higher)
 * [NodeJS](https://nodejs.org/en/) (version 18 or higher)
@@ -129,6 +205,63 @@ In this example, we are solving the abalone age prediction problem using a sampl
 * `scripts`: Bash scripts used in the CI/CD pipeline
 * `src`: Machine learning code for peprocessing and evaluating the ML model
 * `tests`: Unit testing code for testing machine learning code
+
+## 🏗️ COMPLETE PROJECT FLOW DIAGRAM
+
+### Simple Text Flow (Easy to Follow!)
+```
+📊 DATA UPLOAD
+    ↓
+🪣 S3 DATA BUCKET (Raw Abalone Dataset)
+    ↓
+⚡ LAMBDA FUNCTION (Detects new data)
+    ↓
+📋 DATA MANIFEST (JSON file created)
+    ↓
+🔄 CODEPIPELINE TRIGGERED (Automatic)
+    ↓
+┌─────────────────────────────────────────┐
+│  🧪 CI STAGE (Testing & Building)       │
+│  ├── ✅ Unit Tests (pytest)            │
+│  ├── 🔍 Code Linting                   │
+│  └── 📦 Build Artifacts                │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  🤖 ML PIPELINE STAGE                   │
+│  ├── ⚙️  Data Preprocessing (SKLearn)   │
+│  ├── 🏋️  XGBoost Model Training        │
+│  ├── 📊 Model Evaluation & Metrics     │
+│  └── 🔍 Quality Check (MSE ≤ 6.0?)     │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  🚀 DEPLOYMENT STAGE                    │
+│  ├── 👤 Manual Approval Required       │
+│  ├── 📦 Model Registration             │
+│  └── ☁️  CDK Infrastructure Deploy     │
+└─────────────────────────────────────────┘
+    ↓
+🎯 SAGEMAKER ENDPOINT (Real-time inference)
+    ↓
+🌐 API GATEWAY (REST API)
+    ↓
+💻 REACT WEB APP (User Interface)
+    ↓
+👤 END USER (Gets Abalone age prediction!)
+```
+
+### AWS Services Used:
+- **🪣 S3**: Data storage and artifacts
+- **⚡ Lambda**: Event-driven processing  
+- **🔄 CodePipeline**: CI/CD orchestration
+- **🤖 SageMaker**: ML training and deployment
+- **🎯 SageMaker Endpoint**: Real-time inference
+- **🌐 API Gateway**: REST API management
+- **💻 CloudFront + S3**: Web app hosting
+- **☁️ CDK**: Infrastructure as Code
+
+> 📋 **Detailed Architecture**: See [ARCHITECTURE_FLOW.md](./ARCHITECTURE_FLOW.md) for complete visual flow diagram
 
 ## Overall Architecture
 
