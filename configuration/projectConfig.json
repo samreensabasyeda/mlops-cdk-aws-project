@@ -15,5 +15,5 @@
     "projectName": "mlops-e2e",
     "repoType": "codecommit",
     "region": "ap-south-1",
-    "ipPermitList": ["223.231.164.152 /32"]
+    "ipPermitList": ["put ipv4 /32"]
 }
