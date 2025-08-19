@@ -1,13 +1,19 @@
+// {
+//     "projectName": "mlops-e2e",
+//     "repoType": "git",
+//     "git": {
+//         "githubConnectionArn": "",
+//         "githubRepoOwner": "",
+//         "githubRepoName": ""
+//     },
+//     "modelEndpointExportNamePrefix": "ModelHostingEndpoint",
+//     "ipPermitList": [
+//         "0.0.0.0/0"
+//     ]
+// }
 {
     "projectName": "mlops-e2e",
-    "repoType": "git",
-    "git": {
-        "githubConnectionArn": "",
-        "githubRepoOwner": "",
-        "githubRepoName": ""
-    },
-    "modelEndpointExportNamePrefix": "ModelHostingEndpoint",
-    "ipPermitList": [
-        "0.0.0.0/0"
-    ]
+    "repoType": "codecommit",
+    "region": "ap-south-1",
+    "ipPermitList": ["223.231.164.152 /32"]
 }
